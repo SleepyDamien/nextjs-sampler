@@ -15,6 +15,9 @@ export default function Home() {
         <p className="description">
          Keep an eye on this space. 
         </p>
+              <div>
+              Custom mini applications
+              </div>
       </main>
 
       <Footer />
