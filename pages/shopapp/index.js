@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Home.module.css'
 
 export default function ShopAppMain() {
@@ -9,9 +9,12 @@ export default function ShopAppMain() {
     const [filteredItems, setFilteredItems] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true); // For loading state
-    const [resetResults, setResetResults] = useState(true);
-    const itemsPerPage = 5; // Set to 5 for now
+    const [loading, setLoading] = useState(true);
+    const [allItems, setAllItems] = useState([]); // Store all items to reset filteredItems when needed
+    const [sortOption, setSortOption] = useState('name'); // State for sorting
+    const itemsPerPage = 5;
+
+    const inputRef = useRef(null); // Reference to the input element
 
     // Fetch products from API
     useEffect(() => {
@@ -19,18 +22,17 @@ export default function ShopAppMain() {
             try {
                 const response = await fetch('/api/techProducts/products');
                 const data = await response.json();
-                setFilteredItems(data); // Set the fetched items as initial filteredItems
+                setAllItems(data); // Store all items here
+                setFilteredItems(data); // Initialize filteredItems with all products
                 setLoading(false);
-                setResetResults(false);
             } catch (error) {
                 console.error('Error fetching products:', error);
                 setLoading(false);
-                setResetResults(false);
             }
         };
 
         fetchProducts();
-    }, [resetResults]); // Only run once when the component mounts
+    }, []);
 
     // Handle the search events
     const handleSearch = (event) => {
@@ -38,30 +40,61 @@ export default function ShopAppMain() {
         setSearchTerm(value);
 
         if (value.trim() === "") {
+            // If the search term is cleared, reset to all items
+            setFilteredItems(allItems);
             setShowSuggestions(false);
-            setFilteredItems(filteredItems); // Reset to all items when search is cleared
-            setCurrentPage(1); // Reset page on empty search
-            setResetResults(true);
+            setCurrentPage(1); // Reset page when clearing the search
             return;
         }
 
-        const filtered = filteredItems.filter((item) =>
+        // Filter items based on the current search term
+        const filtered = allItems.filter((item) =>
             item.name.toLowerCase().includes(value.toLowerCase())
         );
+
+        // Update filtered items and show suggestions
         setFilteredItems(filtered);
         setShowSuggestions(true);
-        setCurrentPage(1); // Reset page on new search
+        setCurrentPage(1); // Reset page on new search term
     };
 
     // Handle suggestion click
     const handleSuggestionClick = (suggestion) => {
         setSearchTerm(suggestion.name);
-        setFilteredItems([suggestion]);
+        setFilteredItems([suggestion]); // Show only the selected suggestion
         setShowSuggestions(false);
         setCurrentPage(1); // Reset page on suggestion click
     };
 
-    // Paginate the filtered items (5 items per page)
+    // Close suggestions when the input field loses focus
+    const handleBlur = () => {
+        setTimeout(() => {
+            setShowSuggestions(false); // Delay to allow click event on suggestions
+        }, 200); // Optional delay for better UX
+    };
+
+    // Function to handle sorting
+    const handleSortChange = (event) => {
+        const option = event.target.value;
+        setSortOption(option);
+    };
+
+    // Sort filtered items based on selected sort option
+    const sortItems = (items) => {
+        if (sortOption === 'price') {
+            return items.sort((a, b) => {
+                // Parse price as float for sorting
+                const priceA = parseFloat(a.price.replace(/[^\d.-]/g, '')); // Remove non-numeric characters
+                const priceB = parseFloat(b.price.replace(/[^\d.-]/g, ''));
+                return priceA - priceB;
+            });
+        } else if (sortOption === 'name') {
+            return items.sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically (A-Z)
+        }
+        return items; // Default: no sorting, return items as they are
+    };
+
+    // Paginate the filtered and sorted items (5 items per page)
     const paginateItems = (items, page, itemsPerPage) => {
         const startIndex = (page - 1) * itemsPerPage;
         return items.slice(startIndex, startIndex + itemsPerPage);
@@ -72,8 +105,10 @@ export default function ShopAppMain() {
         setCurrentPage(page);
     };
 
-    const paginatedItems = paginateItems(filteredItems, currentPage, itemsPerPage);
-    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    // Apply sorting and pagination
+    const sortedItems = sortItems(filteredItems);
+    const paginatedItems = paginateItems(sortedItems, currentPage, itemsPerPage);
+    const totalPages = Math.ceil(sortedItems.length / itemsPerPage);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -88,10 +123,12 @@ export default function ShopAppMain() {
             <Header title="Find your product" />
             <div className={styles.searchBarContainer}>
                 <input
+                    ref={inputRef}
                     type="text"
                     placeholder="Search for your product"
                     value={searchTerm}
                     onChange={handleSearch}
+                    onBlur={handleBlur} // Handle blur event
                     className={styles.searchInput}
                 />
                 {showSuggestions && searchTerm && (
@@ -109,6 +146,20 @@ export default function ShopAppMain() {
                         </ul>
                     </div>
                 )}
+            </div>
+
+            {/* Sorting Dropdown */}
+            <div className={styles.sortContainer}>
+                <label htmlFor="sortOptions">Sort by: </label>
+                <select
+                    id="sortOptions"
+                    value={sortOption}
+                    onChange={handleSortChange}
+                    className={styles.sortSelect}
+                >
+                    <option value="name">Alphabetical</option>
+                    <option value="price">Price: Low to High</option>
+                </select>
             </div>
 
             <div className={styles.productList}>

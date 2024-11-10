@@ -32,7 +32,7 @@
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
-    margin-top: 100px;;
+    margin-top: 80px;
 }
 
 .searchInput {
@@ -95,7 +95,7 @@
     padding: 0;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-content: center;
-    margin-top: 40px;
+
 }
 
 .productList ul {
@@ -187,12 +187,18 @@
             background-color: #D1D5DB;
             cursor: not-allowed;
         }
+        /* Sort Containter */
 
+.sortContainer {
+    float: left;
+    width: 100%;
+    padding: 5px;
+}
 /* Responsive design tweaks */
 @media (max-width: 768px) {
     .searchInput {
         width: 90%;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .productList {
