@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import Link from 'next/link'
+import shopAppMain from './shopapp'
 
 export default function Home() {
   return (
@@ -16,7 +18,10 @@ export default function Home() {
          Keep an eye on this space. 
         </p>
               <div>
-              Custom mini applications
+                  Custom mini applications
+                  <ul>
+                      <li><Link href="shopapp">Shop App Demo</Link> </li>
+                  </ul>
               </div>
       </main>
 
