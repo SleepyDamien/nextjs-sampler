@@ -18,7 +18,7 @@ export default function Footer() {
             <div className={styles.pageLinks}>
                 <a href="#" className={styles.pageLink}>Contact Us</a>
                 <a href="#" className={styles.pageLink}>Privacy Policy</a>
-                <a href="#" className={styles.pageLink}>Returns and Refunds</a>
+                <a href="#" className={styles.pageLink}>Exchange Policies</a>
             </div>
 
             <div className={styles.footerBottom}>
