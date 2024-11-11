@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import styles from './Footer.module.css'
 import { FaGithub } from "react-icons/fa";
+
 export default function Footer() {
     return (
         <footer className={styles.footer}>
