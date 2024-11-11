@@ -13,7 +13,7 @@ export default function Home() {
         <title>Damien Rincon | Next.JS sandbox</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main id="landingPage">
         <Header title="Next.JS demos" />
         <p className="description">
         Each app is designed with a general concept in mind. 
