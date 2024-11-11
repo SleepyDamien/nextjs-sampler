@@ -10,6 +10,7 @@
     justify-content: flex-start;
     align-items: center;
     overflow-x: hidden;
+    color: black;
 }
 
     /* Heading */
@@ -106,13 +107,13 @@
 .productItem {
     width: 100%;
     background-color: #FFFFFF;
-    border: 1px solid #E5E7EB;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease-in-out;
-    margin-top: 5px;
+    margin-bottom: 10px;
     background-color: #FFF;
+    overflow: hidden;
 }
 
     .productItem:hover {
@@ -128,9 +129,8 @@
 }
 
 .productImage {
-    width: 70px;
-    height: 70px;
-    border-radius: 8px;
+    width: 33% !important;
+    height: 100% !important;
     object-fit: cover;
     margin-right: 15px;
 }
