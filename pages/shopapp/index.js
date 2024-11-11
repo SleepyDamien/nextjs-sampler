@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Home.module.css'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { SiQuicklook } from "react-icons/si";
+import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
+
 
 
 export default function ShopAppMain() {
@@ -182,6 +184,13 @@ export default function ShopAppMain() {
                                         <div className={styles.promoCode}>
                                             Promo Code: <strong suppressHydrationWarning>{item.promoCode}</strong>
                                         </div>
+                                           <div>
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarHalfOutline />
+                                           </div>
                                         <div> 
                                            Quicklook <SiQuicklook />
                                         </div>
