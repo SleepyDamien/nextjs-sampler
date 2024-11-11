@@ -7,6 +7,8 @@
     font-size: 0.9rem;
     width: 100vw;
     margin-top: 30px;
+    bottom: 0;
+    position: absolute;
 }
 
 .socialLinks {
