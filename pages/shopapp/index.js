@@ -190,6 +190,7 @@ export default function ShopAppMain() {
                                                <TiStarFullOutline />
                                                <TiStarFullOutline />
                                                <TiStarHalfOutline />
+                                               <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
                                            </div>
                                         <div> 
                                            Quicklook <SiQuicklook />
