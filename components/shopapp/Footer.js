@@ -4,25 +4,25 @@ export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.socialLinks}>
-                <a href="#" className={styles.socialLink} aria-label="Instagram">
+                <a href="https://github.com/SleepyDamien" className={styles.socialLink} aria-label="Instagram">
                     <FaInstagram />
                 </a>
-                <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                <a href="https://github.com/SleepyDamien" className={styles.socialLink} aria-label="LinkedIn">
                     <FaLinkedin />
                 </a>
-                <a href="#" className={styles.socialLink} aria-label="Twitter">
+                <a href="https://github.com/SleepyDamien" className={styles.socialLink} aria-label="Twitter">
                     <FaTwitter />
                 </a>
             </div>
 
             <div className={styles.pageLinks}>
-                <a href="#" className={styles.pageLink}>Contact Us</a>
+                <a href="https://github.com/SleepyDamien" className={styles.pageLink}>Contact Us</a>
                 <a href="#" className={styles.pageLink}>Privacy Policy</a>
-                <a href="#" className={styles.pageLink}>Exchange Policies</a>
+                <a href="#" className={styles.pageLink}>About Us</a>
             </div>
 
             <div className={styles.footerBottom}>
-                <p>&copy; 2024 YourCompany. All rights reserved.</p>
+                <p>&copy; 2024 sleepyDamien. All rights reserved.</p>
             </div>
         </footer>
     );
