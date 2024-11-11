@@ -3,6 +3,9 @@ import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
 import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Home.module.css'
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import { SiQuicklook } from "react-icons/si";
+
 
 export default function ShopAppMain() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -179,6 +182,9 @@ export default function ShopAppMain() {
                                         <div className={styles.promoCode}>
                                             Promo Code: <strong suppressHydrationWarning>{item.promoCode}</strong>
                                         </div>
+                                        <div> 
+                                           Quicklook <SiQuicklook />
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -196,14 +202,14 @@ export default function ShopAppMain() {
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
-                        {"<"}
+                        <IoMdArrowRoundBack />
                     </button>
                     <span>Page {currentPage} of {totalPages}</span>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
                     >
-                        {">"}
+                        <IoMdArrowRoundForward />
                     </button>
                 </div>
             )}
