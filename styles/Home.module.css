@@ -139,6 +139,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 5px;
 }
 
 .price {
@@ -197,7 +198,7 @@
     max-width: 1200px;
 }
 
-    .sortContainer select#sortOptions {
+    .sortContainer select {
         border: none;
         padding: 4px;
         border-radius: 10px;
