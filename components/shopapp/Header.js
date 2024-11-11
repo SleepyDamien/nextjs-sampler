@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
+import { GiWyvern } from "react-icons/gi";
+
 
 export default function Header() {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -20,7 +22,7 @@ export default function Header() {
             <div className={styles.navbar}>
                 {/* Logo in the center */}
                 <div className={styles.logo}>
-                    <a href="#">Logo</a>
+                    <a href="#"><GiWyvern /> TechDragon</a>
                 </div>
 
                 {/* Right section with dropdown */}
