@@ -176,7 +176,7 @@ export default function ShopAppMain() {
             </div>
 
             {/* Quicklook Modal */}
-            {showQuickLook && quicklookItem && (
+            {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling}>
                                         <div className={styles.productDetails}>
                                         <strong>{quicklookItem.name}</strong>
