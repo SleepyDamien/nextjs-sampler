@@ -3,7 +3,7 @@ import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
 import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Home.module.css'
-import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosClose } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
 import { SiQuicklook } from "react-icons/si";
 import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
 
@@ -186,7 +186,7 @@ export default function ShopAppMain() {
             {/* Quicklook Modal */}
             {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling}>
-                                        <span className={styles.quicklookClose} onClick={handleQuicklookClose}><IoIosClose /></span>
+                                        <span className={styles.quicklookClose} onClick={handleQuicklookClose}><IoIosCloseCircle /></span>
                                         <div className={styles.quicklookImageFrame}>
                                             <img
                                                 src={quicklookItem.image}
