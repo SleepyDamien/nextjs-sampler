@@ -79,14 +79,16 @@ export default function ShopAppMain() {
         setQuicklookItem(item);
         setShowQuicklook(true);
         const qlWindow = document.getElementById("quicklookWindow");
-        qlWindow.className = qlWindow.className === "slide-out-left" ? "slide-left" : "slide-out-left";
+        qlWindow.classList = qlWindow.classList.remove("slide-out-left");
+        qlWindow.classList = qlWindow.classList.add("slide-left");
         window.scrollTo({top: 0, behavior: 'smooth'});
         
     };
 
     const handleQuicklookClose = () => {
         const qlWindow = document.getElementById("quicklookWindow");
-        qlWindow.className = qlWindow.className === "slide-left" ? "slide-out-left" : "slide-left";
+        qlWindow.classList = qlWindow.classList.remove("slide-left");
+        qlWindow.classList = qlWindow.classList.add("slide-out-left");
         setShowQuicklook(false);
     }
 
