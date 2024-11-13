@@ -78,11 +78,16 @@ export default function ShopAppMain() {
     const handleQuicklook = (item) => {
         setQuicklookItem(item);
         setShowQuicklook(true);
+        document.querySelector(".quicklookStyling").classList.remove("slide-out-left");
+        document.querySelector(".quicklookStyling").classList.add("slide-left");
         window.scrollTo({top: 0, behavior: 'smooth'});
+        
     };
 
     const handleQuicklookClose = () => {
         setShowQuicklook(false);
+        document.querySelector(".quicklookStyling").classList.remove("slide-left");
+        document.querySelector(".quicklookStyling").classList.add("slide-out-left");
     }
 
     // Close suggestions when the input field loses focus
