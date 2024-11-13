@@ -49,6 +49,7 @@ export default function ShopAppMain() {
             // If the search term is cleared, reset to all items
             setFilteredItems(allItems);
             setShowSuggestions(false);
+            setShowQuicklook(false);
             setCurrentPage(1); // Reset page when clearing the search
             return;
         }
@@ -81,7 +82,7 @@ export default function ShopAppMain() {
     };
 
     const handleQuicklookClose = () => {
-        setQuicklook(false);
+        setShowQuicklook(false);
     }
 
     // Close suggestions when the input field loses focus
