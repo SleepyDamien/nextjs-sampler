@@ -78,16 +78,16 @@ export default function ShopAppMain() {
     const handleQuicklook = (item) => {
         setQuicklookItem(item);
         setShowQuicklook(true);
-        document.querySelector("#quicklookWindow").classList.remove("slide-out-left");
-        document.querySelector("#quicklookWindow").classList.add("slide-left");
+        const qlWindow = document.getElementById("quicklookWindow");
+        qlWindow.className = qlWindow.className === "slide-out-left" ? "slide-left" : "slide-out-left";
         window.scrollTo({top: 0, behavior: 'smooth'});
         
     };
 
     const handleQuicklookClose = () => {
+        const qlWindow = document.getElementById("quicklookWindow");
+        qlWindow.className = qlWindow.className === "slide-left" ? "slide-out-left" : "slide-left";
         setShowQuicklook(false);
-        document.querySelector("#quicklookWindow").classList.remove("slide-left");
-        document.querySelector("#quicklookWindow").classList.add("slide-out-left");
     }
 
     // Close suggestions when the input field loses focus
