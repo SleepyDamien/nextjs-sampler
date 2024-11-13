@@ -178,6 +178,11 @@ export default function ShopAppMain() {
             {/* Quicklook Modal */}
             {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling}>
+                                        <img
+                                        src={quicklookItem.image}
+                                        alt={quicklookItem.name}
+                                        className={styles.productImage}
+                                        />
                                         <div className={styles.productDetails}>
                                         <strong>{quicklookItem.name}</strong>
                                         <div className={styles.price}>{quicklookItem.price}</div>
