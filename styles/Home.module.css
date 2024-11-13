@@ -3,7 +3,7 @@
 .container {
     margin: 0 auto;
     padding: 20px 20px 0px 20px;
-    background-color: #fddca1;
+    background-color: #a1d7fd;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -255,14 +255,24 @@
         justify-content: space-around;
         flex-direction: column;
         height: auto;
+        padding: unset;
     }
 
-    .quicklookStyling img {
+    .quicklookImageFrame {
         border-radius: 20px;
         width: 100% !important;
         height: 60% !important;
-        margin-right: unset !important;
         margin: auto;
+    }
+
+    .quicklookClose {
+        text-align: right;
+        font-size: 1.5em;
+        padding: 5px;
+    }
+
+    .quicklookStyling img {
+        
     }
 
     .quicklookStyling .productDetails {
