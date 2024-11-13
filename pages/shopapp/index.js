@@ -13,6 +13,8 @@ export default function ShopAppMain() {
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredItems, setFilteredItems] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [showQuicklook, setShowQuicklook] = useState(false);
+    const [quicklookItem, setQuicklookItem] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [allItems, setAllItems] = useState([]); // Store all items to reset filteredItems when needed
@@ -71,11 +73,17 @@ export default function ShopAppMain() {
         setCurrentPage(1); // Reset page on suggestion click
     };
 
+    // Handle quicklook click
+    const handleQuicklook = (item) => {
+        setQuicklookItem(item);
+        setShowQuicklook(true);
+    };
+
     // Close suggestions when the input field loses focus
     const handleBlur = () => {
         setTimeout(() => {
             setShowSuggestions(false); // Delay to allow click event on suggestions
-        }, 200); // Optional delay for better UX
+        }, 100); // Optional delay for better UX
     };
 
     // Function to handle sorting
@@ -122,7 +130,7 @@ export default function ShopAppMain() {
     return (
         <div className={styles.container}>
             <Head>
-                <title>ShopApp | Search Products</title>
+                <title> TechDragon | Search Products</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header title="Find your product" />
@@ -167,6 +175,27 @@ export default function ShopAppMain() {
                 </select>
             </div>
 
+            {/* Quicklook Modal */}
+            {showQuickLook && quicklookItem && (
+                    <div className={styles.quicklookStyling}>
+                                        <div className={styles.productDetails}>
+                                        <strong>{quicklookItem.name}</strong>
+                                        <div className={styles.price}>{quicklookItem.price}</div>
+                                        <div className={styles.promoCode}>
+                                            Promo Code: <strong suppressHydrationWarning>{quicklookItem.promoCode}</strong>
+                                        </div>
+                                           <div>
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarFullOutline />
+                                               <TiStarHalfOutline />
+                                               <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
+                                           </div>
+                                        </div> 
+                    </div>
+                )}
+
             <div className={styles.productList}>
                 <ul>
                     {paginatedItems.length > 0 ? (
@@ -192,7 +221,7 @@ export default function ShopAppMain() {
                                                <TiStarHalfOutline />
                                                <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
                                            </div>
-                                        <div> 
+                                        <div onClick={() => handleQuicklook(item)}> 
                                            Quicklook <SiQuicklook />
                                         </div>
                                     </div>
