@@ -3,7 +3,7 @@ import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
 import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Home.module.css'
-import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosClose } from "react-icons/io";
 import { SiQuicklook } from "react-icons/si";
 import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
 
@@ -37,7 +37,6 @@ export default function ShopAppMain() {
                 setLoading(false);
             }
         };
-
         fetchProducts();
     }, []);
 
@@ -69,6 +68,7 @@ export default function ShopAppMain() {
     const handleSuggestionClick = (suggestion) => {
         setSearchTerm(suggestion.name);
         setFilteredItems([suggestion]); // Show only the selected suggestion
+        setShowQuicklook(false);
         setShowSuggestions(false);
         setCurrentPage(1); // Reset page on suggestion click
     };
@@ -79,6 +79,10 @@ export default function ShopAppMain() {
         setShowQuicklook(true);
         window.scrollTo({top: 0, behavior: 'smooth'});
     };
+
+    const handleQuicklookClose = () => {
+        setQuicklook(false);
+    }
 
     // Close suggestions when the input field loses focus
     const handleBlur = () => {
@@ -91,6 +95,8 @@ export default function ShopAppMain() {
     const handleSortChange = (event) => {
         const option = event.target.value;
         setSortOption(option);
+        setShowQuicklook(false);
+
     };
 
     // Sort filtered items based on selected sort option
@@ -179,18 +185,21 @@ export default function ShopAppMain() {
             {/* Quicklook Modal */}
             {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling}>
-                                        <img
-                                        src={quicklookItem.image}
-                                        alt={quicklookItem.name}
-                                        className={styles.productImage}
-                                        />
-                                        <div className={styles.productDetails}>
-                                        <strong>{quicklookItem.name}</strong>
-                                        <div className={styles.price}>{quicklookItem.price}</div>
-                                        <div className={styles.promoCode}>
-                                            Promo Code: <strong suppressHydrationWarning>{quicklookItem.promoCode}</strong>
+                                        <span className={styles.quicklookClose} onClick={handleQuicklookClose}><IoIosClose /></span>
+                                        <div className={styles.quicklookImageFrame}>
+                                            <img
+                                                src={quicklookItem.image}
+                                                alt={quicklookItem.name}
+                                                className={styles.productImage}
+                                            />
                                         </div>
-                                           <div>
+                                        <div className={styles.productDetails}>
+                                            <div className={styles.productTitle}><strong>{quicklookItem.name}</strong></div>
+                                            <div className={styles.price}>{quicklookItem.price}</div>
+                                            <div className={styles.promoCode}>
+                                                Promo Code: <strong suppressHydrationWarning>{quicklookItem.promoCode}</strong>
+                                            </div>
+                                            <div>
                                                <TiStarFullOutline />
                                                <TiStarFullOutline />
                                                <TiStarFullOutline />
@@ -198,6 +207,7 @@ export default function ShopAppMain() {
                                                <TiStarHalfOutline />
                                                <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
                                            </div>
+                                                
                                         </div> 
                     </div>
                 )}
@@ -208,11 +218,11 @@ export default function ShopAppMain() {
                         paginatedItems.map((item) => (
                             <li key={item.id} className={styles.productItem}>
                                 <div className={styles.product}>
-                                    <img
-                                        src={item.image}
-                                        alt={item.name}
-                                        className={styles.productImage}
-                                    />
+                                        <img
+                                            src={item.image}
+                                            alt={item.name}
+                                            className={styles.productImage}
+                                        />
                                     <div className={styles.productDetails}>
                                         <strong>{item.name}</strong>
                                         <div className={styles.price}>{item.price}</div>
