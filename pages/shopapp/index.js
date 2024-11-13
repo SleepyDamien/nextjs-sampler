@@ -77,6 +77,7 @@ export default function ShopAppMain() {
     const handleQuicklook = (item) => {
         setQuicklookItem(item);
         setShowQuicklook(true);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     // Close suggestions when the input field loses focus
