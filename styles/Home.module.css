@@ -211,7 +211,7 @@
     height: 300px;
     border-radius: 25px;
     display: inline-table;
-    padding: 15px;
+    padding: 10px;
     overflow: hidden;
     margin-top: 10px;
 }
@@ -251,13 +251,22 @@
     .quicklookStyling {
         width: 90%;
         display: inline-flex;
-        align-items: flex-start;
         justify-items: start;
+        justify-content: space-around;
         flex-direction: column;
+        height: auto;
     }
 
     .quicklookStyling img {
         border-radius: 20px;
         width: 100% !important;
+        height: 60% !important;
+        margin-right: unset !important;
+        margin: auto;
+    }
+
+    .quicklookStyling .productDetails {
+        width: 100%;
+        padding: 10px;
     }
 }
