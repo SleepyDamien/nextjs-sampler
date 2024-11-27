@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import Header from '@components/rpgidler/Header'
-import Footer from '@components/rpgidler/Footer'
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Header from '@components/rpgidler/Header';
+import Footer from '@components/rpgidler/Footer';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';  // React Icons
+import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';
 import styles from '@styles/IdleGame.module.css';
 
 const Game = () => {
@@ -15,83 +15,111 @@ const Game = () => {
     });
 
     const [gameLog, setGameLog] = useState([]);
+    const [autoFight, setAutoFight] = useState(false); // Auto-fight toggle
+    const logEndRef = useRef(null);
+    const playerRef = useRef(player); // Use ref to hold player state persistently
+
+    // Update player ref whenever state changes
+    useEffect(() => {
+        playerRef.current = player;
+    }, [player]);
+
+    // Shared function to update player state
+    const updatePlayer = (updates) => {
+        console.log("Updating Player with: " + JSON.stringify(updates));
+        setPlayer((prev) => ({
+            ...prev,
+            ...updates, // Merge the updates with the current player state
+        }));
+    };
 
     // Fetch player data from the API
     const fetchPlayerData = async () => {
         try {
-            const res = await axios.get('/api/gameApi/player', { params: { player } });
-            setPlayer(res.data);
+            const res = await axios.get('/api/gameApi/player', { params: { player: playerRef.current } });
+            updatePlayer(res.data);
+            console.log("Player fetched.")
         } catch (error) {
             console.error('Error fetching player data:', error);
         }
     };
 
-    // Handle fight action (battle with monster)
     const handleFight = async () => {
-        // Add the animation class to the button
-        const fightButton = document.getElementById('fightButton');
-        fightButton.classList.add(styles.shakeButton);
-
         try {
-            const response = await axios.post('/api/gameApi/fight', { player });
+            const response = await axios.post('/api/gameApi/fight', { player: playerRef.current });
+            const { exp, gold, level } = response.data;
 
-            // Compare the level to determine level up was sent
-            if (player.level < response.data.level) {
-                setGameLog((prevLog) => [
-                    ...prevLog,
-                    `You leveled up!`,
-                ]);
+            updatePlayer({
+                exp, // Update exp
+                gold, // Update gold
+                level, // Update level if it changes
+            });
+
+            if (player.level < level) {
+                setGameLog((prevLog) => [...prevLog, `You leveled up!`]);
             }
 
-            setPlayer(response.data);
-            // Log the fight result
             setGameLog((prevLog) => [
                 ...prevLog,
-                `Fought a monster and now have ${response.data.exp} EXP and ${response.data.gold} gold.`,
+                `Fought a monster and now have ${exp} EXP and ${gold} gold.`,
             ]);
         } catch (error) {
             console.error('Error during fight:', error);
             setGameLog((prevLog) => [...prevLog, 'An error occurred during the fight.']);
         }
-
-        // Remove the animation class after the animation completes
-        setTimeout(() => {
-            fightButton.classList.remove(styles.shakeButton);
-        }, 500); // Duration of the shake animation
     };
 
-    // Handle idle action (gain gold over time)
     const handleIdle = async () => {
-        // Add the glow effect to indicate idling
-        const idleButton = document.getElementById('idleButton');
-        idleButton.classList.add(styles.glowButton);
-
         try {
-            const response = await axios.post('/api/gameApi/idle', { player });
-            setPlayer(response.data);
+            const response = await axios.post('/api/gameApi/idle', { player: playerRef.current });
+            const { gold } = response.data;
 
-            // Log the idle action result
+            updatePlayer({ gold }); // Only update gold
+
             setGameLog((prevLog) => [
                 ...prevLog,
-                `Idled and gained ${response.data.gold} gold.`,
+                `Idled and now have ${gold} gold.`,
             ]);
         } catch (error) {
             console.error('Error during idle:', error);
             setGameLog((prevLog) => [...prevLog, 'An error occurred while idling.']);
         }
-
-        // Remove the glow effect after a while
-        setTimeout(() => {
-            idleButton.classList.remove(styles.glowButton);
-        }, 1000); // Duration of the glow effect
     };
 
-    // Calculate EXP bar width (percentage)
-    const expPercentage = (player.exp / (100 * player.level)) * 100; // Assuming 100 EXP per level
+    // Auto-fight interval
+    useEffect(() => {
+        if (!autoFight) return;
+
+        const fightTimer = 15000 / player.level * 1;
+        const intervalFight = setInterval(() => {
+            handleFight();
+        }, fightTimer); // Interval for auto-fight
+
+        return () => clearInterval(intervalFight);
+    }, [autoFight]);
+
+    // Idle gold interval
+    useEffect(() => {
+        const goldTimer = 12000 / player.level * 1;
+        const intervalGold = setInterval(() => {
+            handleIdle();
+        }, goldTimer); // Interval for idle gold
+
+        return () => clearInterval(intervalGold);
+    }, []); // Runs independently of `autoFight` or `player`
+
+    // Automatically scroll to the bottom of the game log when a new entry is added
+    useEffect(() => {
+        if (logEndRef.current) {
+            logEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [gameLog]);
 
     useEffect(() => {
         fetchPlayerData();
     }, []);
+
+    const expPercentage = (player.exp / (100 * player.level)) * 100;
 
     return (
         <div className={styles.gameContainer}>
@@ -134,10 +162,12 @@ const Game = () => {
 
             <div id="logArea" className={styles.gameLogArea}>
                 {gameLog.length === 0 ? (
-                    <p>No game events yet. Start playing!</p>
+                    <p>Your journey begins now.</p>
                 ) : (
                     gameLog.map((log, index) => <p key={index}>{log}</p>)
                 )}
+                {/* Scroll to the latest log entry */}
+                <div ref={logEndRef}></div>
             </div>
 
             <div id="controlArea">
@@ -149,11 +179,11 @@ const Game = () => {
                     Fight Monsters
                 </button>
                 <button
-                    id="idleButton"
-                    className={styles.gameButton}
-                    onClick={handleIdle}
+                    id="toggleAutoFight"
+                    className={`${styles.gameButton} ${autoFight ? styles.activeButton : ''}`}
+                    onClick={() => setAutoFight((prev) => !prev)}
                 >
-                    Skill for Gold
+                    {autoFight ? 'Stop Auto-Fight' : 'Start Auto-Fight'}
                 </button>
             </div>
             <Footer />

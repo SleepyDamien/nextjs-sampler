@@ -19,6 +19,10 @@
         background-color: #005bb5;
     }
 
+.activeButton{
+    background-color: red
+}
+
 .gameLogArea {
     width: 80%;
     height: 300px;
