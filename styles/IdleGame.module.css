@@ -19,6 +19,14 @@
         background-color: #005bb5;
     }
 
+.activeButton{
+    background-color: red;
+}
+
+    .activeButton:hover {
+        background-color: #d10101;
+    }
+
 .gameLogArea {
     width: 80%;
     height: 300px;
@@ -134,4 +142,13 @@
         margin-bottom: 20px;
         flex-wrap: wrap;
     }
+
+    .gameLogArea {
+        width: 100%;
+    }
+
+    .gameContainer {
+        margin-top: 100px;
+    }
+
 }

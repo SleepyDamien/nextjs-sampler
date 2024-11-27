@@ -1,164 +1,203 @@
-import Head from 'next/head'
-import Header from '@components/rpgidler/Header'
-import Footer from '@components/rpgidler/Footer'
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Header from '@components/rpgidler/Header';
+import Footer from '@components/rpgidler/Footer';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';  // React Icons
+import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';
 import styles from '@styles/IdleGame.module.css';
 
-const Game = () => {
-    const [player, setPlayer] = useState({
-        level: 1,
-        health: 100,
-        gold: 0,
-        exp: 0,
-    });
+    const Game = () => {
+        const [player, setPlayer] = useState({
+            level: 1,
+            health: 100,
+            gold: 0,
+            exp: 0,
+            className: null,
+            stats: {},
+        });
 
-    const [gameLog, setGameLog] = useState([]);
+        const [gameLog, setGameLog] = useState([]);
+        const [autoFight, setAutoFight] = useState(false);
+        const [isChoosingClass, setIsChoosingClass] = useState(true);
+        const logEndRef = useRef(null);
+        const playerRef = useRef(player);
 
-    // Fetch player data from the API
-    const fetchPlayerData = async () => {
-        try {
-            const res = await axios.get('/api/gameApi/player', { params: { player } });
-            setPlayer(res.data);
-        } catch (error) {
-            console.error('Error fetching player data:', error);
-        }
-    };
+        useEffect(() => {
+            playerRef.current = player;
+        }, [player]);
 
-    // Handle fight action (battle with monster)
-    const handleFight = async () => {
-        // Add the animation class to the button
-        const fightButton = document.getElementById('fightButton');
-        fightButton.classList.add(styles.shakeButton);
+        const updatePlayer = (updates) => {
+            setPlayer((prev) => ({
+                ...prev,
+                ...updates,
+            }));
+        };
 
-        try {
-            const response = await axios.post('/api/gameApi/fight', { player });
+        const fetchPlayerData = async (className = player.className) => {
+            try {
+                const res = await axios.get('/api/gameApi/player', { params: { level: playerRef.current.level, className } });
+                const { stats, ...rest } = res.data;
+                updatePlayer({ stats, ...rest });
+            } catch (error) {
+                console.error('Error fetching player data:', error);
+            }
+        };
 
-            // Compare the level to determine level up was sent
-            if (player.level < response.data.level) {
+        const handleClassSelect = async (selectedClass) => {
+            updatePlayer({ className: selectedClass });
+            await fetchPlayerData(selectedClass);
+            setIsChoosingClass(false);
+            setGameLog((prevLog) => [...prevLog, `You chose the path of the ${selectedClass}.`]);
+        };
+
+        const handleFight = async () => {
+            if (!player.className) return;
+            try {
+                const response = await axios.post('/api/gameApi/fight', { player: playerRef.current });
+                const { exp, gold, level } = response.data;
+
+                updatePlayer({ exp, gold, level });
+
+                if (player.level < level) {
+                    setGameLog((prevLog) => [...prevLog, `You leveled up!`]);
+                }
+
                 setGameLog((prevLog) => [
                     ...prevLog,
-                    `You leveled up!`,
+                    `You fight off some bandits and now have ${exp} EXP and ${gold} gold.`,
                 ]);
+            } catch (error) {
+                console.error('Error during fight:', error);
+                setGameLog((prevLog) => [...prevLog, 'An error occurred during the fight.']);
             }
+        };
 
-            setPlayer(response.data);
-            // Log the fight result
-            setGameLog((prevLog) => [
-                ...prevLog,
-                `Fought a monster and now have ${response.data.exp} EXP and ${response.data.gold} gold.`,
-            ]);
-        } catch (error) {
-            console.error('Error during fight:', error);
-            setGameLog((prevLog) => [...prevLog, 'An error occurred during the fight.']);
-        }
+        const handleIdle = async () => {
+            if (!player.className) return;
+            try {
+                const response = await axios.post('/api/gameApi/idle', { player: playerRef.current });
+                const { gold } = response.data;
 
-        // Remove the animation class after the animation completes
-        setTimeout(() => {
-            fightButton.classList.remove(styles.shakeButton);
-        }, 500); // Duration of the shake animation
-    };
+                updatePlayer({ gold });
 
-    // Handle idle action (gain gold over time)
-    const handleIdle = async () => {
-        // Add the glow effect to indicate idling
-        const idleButton = document.getElementById('idleButton');
-        idleButton.classList.add(styles.glowButton);
+                setGameLog((prevLog) => [
+                    ...prevLog,
+                    `You do work around town and now have ${gold} gold.`,
+                ]);
+            } catch (error) {
+                console.error('Error during idle:', error);
+                setGameLog((prevLog) => [...prevLog, 'An error occurred while idling.']);
+            }
+        };
 
-        try {
-            const response = await axios.post('/api/gameApi/idle', { player });
-            setPlayer(response.data);
+        useEffect(() => {
+            if (!player.className || !autoFight) return;
 
-            // Log the idle action result
-            setGameLog((prevLog) => [
-                ...prevLog,
-                `Idled and gained ${response.data.gold} gold.`,
-            ]);
-        } catch (error) {
-            console.error('Error during idle:', error);
-            setGameLog((prevLog) => [...prevLog, 'An error occurred while idling.']);
-        }
+            const fightTimer = 15000 / player.level * 1;
+            const intervalFight = setInterval(() => {
+                handleFight();
+            }, fightTimer);
 
-        // Remove the glow effect after a while
-        setTimeout(() => {
-            idleButton.classList.remove(styles.glowButton);
-        }, 1000); // Duration of the glow effect
-    };
+            return () => clearInterval(intervalFight);
+        }, [autoFight, player.className]);
 
-    // Calculate EXP bar width (percentage)
-    const expPercentage = (player.exp / (100 * player.level)) * 100; // Assuming 100 EXP per level
+        useEffect(() => {
+            if (!player.className) return;
 
-    useEffect(() => {
-        fetchPlayerData();
-    }, []);
+            const goldTimer = 12000 / player.level * 1;
+            const intervalGold = setInterval(() => {
+                handleIdle();
+            }, goldTimer);
 
-    return (
-        <div className={styles.gameContainer}>
-            <Head>
-                <title> RPG Idle Game | Fight. Loot. Survive.</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Header title="RPG Idle Sample" />
+            return () => clearInterval(intervalGold);
+        }, [player.className]);
 
-            {/* Profile Panel */}
-            <div className={styles.profilePanel}>
-                <div className={styles.profileHeader}>
-                    <h2>Player Profile</h2>
-                </div>
+        useEffect(() => {
+            if (logEndRef.current) {
+                logEndRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, [gameLog]);
 
-                <div className={styles.profileStats}>
-                    <div className={styles.statItem}>
-                        <FaTrophy className={styles.icon} />
-                        <p>Level: {player.level}</p>
+        useEffect(() => {
+            if (!player.className) return;
+            fetchPlayerData();
+        }, [player.className]);
+
+        const expPercentage = (player.exp / (100 * player.level)) * 100;
+
+        return (
+            <div className={styles.gameContainer}>
+                <Head>
+                    <title>RPG Idle Game | Fight. Loot. Survive.</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <Header title="RPG Idle Sample" />
+
+                {/* Character Class Selection */}
+                {isChoosingClass ? (
+                    <div className={styles.classSelection}>
+                        <h2>Choose Your Class</h2>
+                        <button onClick={() => handleClassSelect('warrior')} className={styles.classButton}>Warrior</button>
+                        <button onClick={() => handleClassSelect('mage')} className={styles.classButton}>Mage</button>
+                        <button onClick={() => handleClassSelect('rogue')} className={styles.classButton}>Rogue</button>
                     </div>
-                    <div className={styles.statItem}>
-                        <FaShieldAlt className={styles.icon} />
-                        <p>Health: {player.health}</p>
-                    </div>
-                    <div className={styles.statItem}>
-                        <FaCoins className={styles.icon} />
-                        <p>Gold: {player.gold}</p>
-                    </div>
-                    <div className={styles.statItem}>
-                        <FaStar className={styles.icon} />
-                        <p>Exp: {player.exp}</p>
-                    </div>
-                </div>
-
-                {/* EXP Bar */}
-                <div className={styles.expBarContainer}>
-                    <div className={styles.expBar} style={{ width: `${expPercentage}%` }}></div>
-                </div>
-            </div>
-
-            <div id="logArea" className={styles.gameLogArea}>
-                {gameLog.length === 0 ? (
-                    <p>No game events yet. Start playing!</p>
                 ) : (
-                    gameLog.map((log, index) => <p key={index}>{log}</p>)
+                    <>
+                        {/* Profile Panel */}
+                        <div className={styles.profilePanel}>
+                            <div className={styles.profileHeader}>
+                                <h2>Player Profile</h2>
+                            </div>
+
+                            <div className={styles.profileStats}>
+                                <div className={styles.statItem}>
+                                    <FaTrophy className={styles.icon} />
+                                    <p>Class: {player.className || "Not Selected"}</p>
+                                </div>
+                                <div className={styles.statItem}>
+                                    <FaTrophy className={styles.icon} />
+                                    <p>Level: {player.level}</p>
+                                </div>
+                                <div className={styles.statItem}>
+                                    <FaShieldAlt className={styles.icon} />
+                                    <p>Health: {player.health}</p>
+                                </div>
+                                <div className={styles.statItem}>
+                                    <FaCoins className={styles.icon} />
+                                    <p>Gold: {player.gold}</p>
+                                </div>
+                                <div className={styles.statItem}>
+                                    <FaStar className={styles.icon} />
+                                    <p>Exp: {player.exp}</p>
+                                </div>
+                            </div>
+
+                            {/* EXP Bar */}
+                            <div className={styles.expBarContainer}>
+                                <div className={styles.expBar} style={{ width: `${expPercentage}%` }}></div>
+                            </div>
+                        </div>
+
+                        {/* Game Log */}
+                        <div className={styles.gameLogArea}>
+                            {gameLog.map((log, index) => <p key={index}>{log}</p>)}
+                            <div ref={logEndRef}></div>
+                        </div>
+
+                        {/* Controls */}
+                        <div id="controlArea">
+                            <button onClick={handleFight} className={styles.gameButton}>Fight Monsters</button>
+                                <button onClick={() => setAutoFight((prev) => !prev)}
+                                    className={`${styles.gameButton} ${autoFight ? styles.activeButton : ''}`}>
+                                {autoFight ? 'Stop Auto-Fight' : 'Start Auto-Fight'}
+                            </button>
+                        </div>
+                    </>
                 )}
-            </div>
 
-            <div id="controlArea">
-                <button
-                    id="fightButton"
-                    className={styles.gameButton}
-                    onClick={handleFight}
-                >
-                    Fight Monsters
-                </button>
-                <button
-                    id="idleButton"
-                    className={styles.gameButton}
-                    onClick={handleIdle}
-                >
-                    Skill for Gold
-                </button>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    );
-};
+        );
+    };
 
-export default Game;
+    export default Game;
