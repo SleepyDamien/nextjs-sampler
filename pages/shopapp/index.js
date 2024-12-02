@@ -226,7 +226,7 @@ export default function ShopAppMain() {
                         paginatedItems.map((item) => (
                             <li key={item.id} className={styles.productItem}>
                                 <div className={styles.product}>
-                                    <div className="{styles.productThumbnailContainer}">
+                                    <div className={styles.productThumbnailContainer}>
                                         <img
                                             src={item.image}
                                             alt={item.name}
