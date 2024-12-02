@@ -127,11 +127,15 @@
     justify-content: space-between;
 }
 
+.productThumbnailContainer{
+    height: 100%;
+    width: 33%;
+}
+
 .productImage {
-    width: 33% !important;
+    width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    margin-right: 15px;
 }
 
 .productDetails {
