@@ -141,7 +141,9 @@ import styles from '@styles/IdleGame.module.css';
                         <div onClick={() => handleClassSelect('warrior')} style="height: 150px;width: 100px;background-color: #34785f;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #32a87d;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                    <Image 
+                                        src="https://placehold.co/100x100/EEE/31343C" 
+                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Warrior Path</span>
@@ -154,7 +156,9 @@ import styles from '@styles/IdleGame.module.css';
                         <div onClick={() => handleClassSelect('mage')} style="height: 150px;width: 100px;background-color: #416e96;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #2f5270;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                    <Image 
+                                        src="https://placehold.co/100x100/EEE/31343C" 
+                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Mage Path</span>
@@ -167,7 +171,9 @@ import styles from '@styles/IdleGame.module.css';
                         <div onClick={() => handleClassSelect('rogue')} style="height: 150px;width: 100px;background-color: #513482;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #623f9e;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                    <Image 
+                                        src="https://placehold.co/100x100/EEE/31343C" 
+                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Rogue Path</span>
