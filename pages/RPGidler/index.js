@@ -137,9 +137,46 @@ import styles from '@styles/IdleGame.module.css';
                 {isChoosingClass ? (
                     <div className={styles.classSelection}>
                         <h2>Choose Your Class</h2>
-                        <button onClick={() => handleClassSelect('warrior')} className={styles.classButton}>Warrior</button>
-                        <button onClick={() => handleClassSelect('mage')} className={styles.classButton}>Mage</button>
-                        <button onClick={() => handleClassSelect('rogue')} className={styles.classButton}>Rogue</button>
+                 {/* Swap these out with a dynamic card builder - ex: pass var to component. This is essentially a placeholder for now. Also move the styles - I hate inline but using the github editor*/}
+                        <div onClick={() => handleClassSelect('warrior')} style="height: 150px;width: 100px;background-color: #34785f;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
+                            <div style="height: 100%;width: 100%;background-color: #32a87d;margin: auto;border-radius: inherit;overflow: hidden;">
+                                <div style=" height: 50%; width: 100%; background-color: black">
+                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                </div>
+                                <div style="padding: 5px;">
+                                    <span>Warrior Path</span>
+                                    <span>Attack 150</span>
+                                    <span>Defence 150</span>
+                                    <span>Health 100</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div onClick={() => handleClassSelect('mage')} style="height: 150px;width: 100px;background-color: #416e96;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
+                            <div style="height: 100%;width: 100%;background-color: #2f5270;margin: auto;border-radius: inherit;overflow: hidden;">
+                                <div style=" height: 50%; width: 100%; background-color: black">
+                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                </div>
+                                <div style="padding: 5px;">
+                                    <span>Mage Path</span>
+                                    <span>M. Attack 99</span>
+                                    <span>Defence 999</span>
+                                    <span>Health 100</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div onClick={() => handleClassSelect('rogue')} style="height: 150px;width: 100px;background-color: #513482;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
+                            <div style="height: 100%;width: 100%;background-color: #623f9e;margin: auto;border-radius: inherit;overflow: hidden;">
+                                <div style=" height: 50%; width: 100%; background-color: black">
+                                    <img src="https://placehold.co/100x100/EEE/31343C">
+                                </div>
+                                <div style="padding: 5px;">
+                                    <span>Rogue Path</span>
+                                    <span>Attack 99</span>
+                                    <span>Defence 80</span>
+                                    <span>Health 125</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ) : (
                     <>
