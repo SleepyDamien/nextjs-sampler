@@ -136,8 +136,8 @@ import styles from '@styles/IdleGame.module.css';
                 {isChoosingClass ? (
                     <div className={styles.classSelection}>
                         <h2>Choose Your Class</h2>
-                        <div onClick={() => handleClassSelect('warrior')} className={styles.classCardContainer}>
-                            <div className={styles.classCardContentContainer}>
+                        <div onClick={() => handleClassSelect('warrior')} className={[styles.classCardContainer, styles.warriorCardContainer]}>
+                            <div className={[styles.classCardContentContainer, styles.warriorCardContentContainer]}>
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
@@ -149,8 +149,8 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                             </div>
                         </div>
-                        <div onClick={() => handleClassSelect('mage')} className={styles.classCardContainer}>
-                            <div className={styles.classCardContentContainer}>
+                        <div onClick={() => handleClassSelect('mage')} className={[styles.classCardContainer, styles.mageCardContainer]}>
+                            <div className={[styles.classCardContentContainer, styles.mageCardContentContainer]}>
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
@@ -162,8 +162,8 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                             </div>
                         </div>
-                        <div onClick={() => handleClassSelect('rogue')} className={styles.classCardContainer}>
-                            <div className={styles.classCardContentContainer}>
+                        <div onClick={() => handleClassSelect('rogue')} className={[styles.classCardContainer, styles.rogueCardContainer]}>
+                            <div className={[styles.classCardContentContainer, styles.rogueCardContentContainer]}>
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
