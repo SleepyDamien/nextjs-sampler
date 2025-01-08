@@ -215,7 +215,7 @@ import styles from '@styles/IdleGame.module.css';
 
                         {/* Game Log */}
                         <div className={styles.gameLogArea}>
-                            {gameLog.map((log, index) => <p className={styles.logMessageStyle} key={index}>{log}</p>)}
+                            {gameLog.map((log, index) => <span className={styles.logMessageStyle} key={index}><p>{log}</p></span>)}
                             <div ref={logEndRef}></div>
                         </div>
 
