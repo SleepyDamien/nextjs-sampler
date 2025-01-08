@@ -46,6 +46,30 @@
     border-bottom: 1px solid black;
 }
 
+
+/* Custom Classes for the classes */
+.warriorCardContainer{
+    background-color: #a12727;
+}
+.warriorCardContentContainer{
+    background-color: #a13f3f;
+}
+
+.mageCardContainer{
+    background-color: #258a9c;
+}
+.mageCardContentContainer{
+    background-color: #4d8e99;
+}
+
+.rogueCardContainer{
+    background-color: #95229c;
+}
+.rogueCardContentContainer{
+    background-color: #9f58a3;
+}
+
+/* Generic Card classes for class picker */
 .classCardContainer {
     height: 200px;
     width: 150px;
