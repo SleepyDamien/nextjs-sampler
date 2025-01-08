@@ -141,7 +141,7 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Warrior Path</span><br />
+                                    <span><b>Warrior</b></span><br />
                                     <span>Attack 150</span><br />
                                     <span>Defence 150</span><br />
                                     <span>Speed 100</span><br />
@@ -154,7 +154,7 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Mage Path</span><br />
+                                    <span><b>Mage</b></span><br />
                                     <span>Magic Attack 200</span><br />
                                     <span>Defence 70</span><br />
                                     <span>Speed 80</span><br />
@@ -167,7 +167,7 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Rogue Path</span><br />
+                                    <span><b>Rogue</b></span><br />
                                     <span>Attack 100</span><br />
                                     <span>Defence 80</span><br />
                                     <span>Speed 150</span><br />
