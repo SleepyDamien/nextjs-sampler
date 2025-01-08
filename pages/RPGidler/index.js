@@ -162,8 +162,8 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                             </div>
                         </div>
-                        <div onClick={() => handleClassSelect('rogue')} className={[styles.classCardContainer, styles.rogueCardContainer]}>
-                            <div className={[styles.classCardContentContainer, styles.rogueCardContentContainer]}>
+                        <div onClick={() => handleClassSelect('rogue')} className={styles.classCardContainer + " " + styles.rogueCardContainer}>
+                            <div className={styles.classCardContentContainer + " " + styles.rogueCardContentContainer}>
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
