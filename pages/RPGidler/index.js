@@ -141,10 +141,11 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Warrior Path</span>
-                                    <span>Attack 150</span>
-                                    <span>Defence 150</span>
-                                    <span>Health 100</span>
+                                    <span>Warrior Path</span><br />
+                                    <span>Attack 150</span><br />
+                                    <span>Defence 150</span><br />
+                                    <span>Speed 100</span><br />
+                                    <span>Health 100</span><br />
                                 </div>
                             </div>
                         </div>
@@ -153,10 +154,11 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Mage Path</span>
-                                    <span>M. Attack 99</span>
-                                    <span>Defence 999</span>
-                                    <span>Health 100</span>
+                                    <span>Mage Path</span><br />
+                                    <span>Magic Attack 200</span><br />
+                                    <span>Defence 70</span><br />
+                                    <span>Speed 80</span><br />
+                                    <span>Health 100</span><br />
                                 </div>
                             </div>
                         </div>
@@ -165,10 +167,11 @@ import styles from '@styles/IdleGame.module.css';
                                 <div className={styles.classCardImageContainer}>
                                 </div>
                                 <div className={styles.classCardDescription}>
-                                    <span>Rogue Path</span>
-                                    <span>Attack 99</span>
-                                    <span>Defence 80</span>
-                                    <span>Health 125</span>
+                                    <span>Rogue Path</span><br />
+                                    <span>Attack 100</span><br />
+                                    <span>Defence 80</span><br />
+                                    <span>Speed 150</span><br />
+                                    <span>Health 125</span><br />
                                 </div>
                             </div>
                         </div>
