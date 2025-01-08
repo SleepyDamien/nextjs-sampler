@@ -204,9 +204,6 @@ export default function ShopAppMain() {
                                         <div className={styles.productDetails}>
                                             <div className={styles.productTitle}><strong>{quicklookItem.name}</strong></div>
                                             <div className={styles.price}>{quicklookItem.price}</div>
-                                            <div className={styles.promoCode}>
-                                                Promo Code: <strong suppressHydrationWarning>{quicklookItem.promoCode}</strong>
-                                            </div>
                                             <div>
                                                <TiStarFullOutline />
                                                <TiStarFullOutline />
@@ -236,9 +233,7 @@ export default function ShopAppMain() {
                                     <div className={styles.productDetails}>
                                         <strong>{item.name}</strong>
                                         <div className={styles.price}>{item.price}</div>
-                                        <div className={styles.promoCode}>
-                                            Promo Code: <strong suppressHydrationWarning>{item.promoCode}</strong>
-                                        </div>
+                                         <div className={styles.quickLinkSection}>
                                            <div>
                                                <TiStarFullOutline />
                                                <TiStarFullOutline />
@@ -250,6 +245,7 @@ export default function ShopAppMain() {
                                         <div onClick={() => handleQuicklook(item)}> 
                                            Quicklook <SiQuicklook />
                                         </div>
+                                      </div>
                                     </div>
                                 </div>
                             </li>
