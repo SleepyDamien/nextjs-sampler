@@ -153,8 +153,7 @@
     color: #10B981;
     font-weight: 600;
     letter-spacing: 0.5px;
-    margin-top: 10px;
-    magin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .promoCode {
@@ -162,6 +161,12 @@
     font-size: 1rem;
     font-weight: bold;
     margin-top: 5px;
+}
+
+.quickLinkSection{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
 }
 
 /* Pagination Controls */
