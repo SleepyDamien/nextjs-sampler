@@ -47,8 +47,8 @@
 }
 
 .classCardContainer {
-    height: 150px;
-    width: 100px;
+    height: 200px;
+    width: 150px;
     background-color: #34785f;
     display: inline-grid;
     margin: 25px;
@@ -56,6 +56,7 @@
     padding: 6px;
     font-size: .7em;
     text-align: initial;
+    text-align-last: justify;
 }
 
 .classCardContentContainer {
