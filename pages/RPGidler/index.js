@@ -132,16 +132,15 @@ import styles from '@styles/IdleGame.module.css';
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header title="RPG Idle Sample" />
-                 {/* Swap these out with a dynamic card builder - ex: pass var to component. This is essentially a placeholder for now. Also move the styles - I hate inline but using the github editor*/}
                 {/* Character Class Selection */}
                 {isChoosingClass ? (
                     <div className={styles.classSelection}>
                         <h2>Choose Your Class</h2>
-                        <div onClick={() => handleClassSelect('warrior')} style="height: 150px;width: 100px;background-color: #34785f;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
-                            <div style="height: 100%;width: 100%;background-color: #32a87d;margin: auto;border-radius: inherit;overflow: hidden;">
-                                <div style=" height: 50%; width: 100%; background-color: black">
+                        <div onClick={() => handleClassSelect('warrior')} className={styles.classCardContainer}>
+                            <div className={styles.classCardContentContainer}>
+                                <div className={styles.classCardImageContainer}>
                                 </div>
-                                <div style="padding: 5px;">
+                                <div className={styles.classCardDescription}>
                                     <span>Warrior Path</span>
                                     <span>Attack 150</span>
                                     <span>Defence 150</span>
@@ -149,11 +148,11 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                             </div>
                         </div>
-                        <div onClick={() => handleClassSelect('mage')} style="height: 150px;width: 100px;background-color: #416e96;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
-                            <div style="height: 100%;width: 100%;background-color: #2f5270;margin: auto;border-radius: inherit;overflow: hidden;">
-                                <div style=" height: 50%; width: 100%; background-color: black">
+                        <div onClick={() => handleClassSelect('mage')} className={styles.classCardContainer}>
+                            <div className={styles.classCardContentContainer}>
+                                <div className={styles.classCardImageContainer}>
                                 </div>
-                                <div style="padding: 5px;">
+                                <div className={styles.classCardDescription}>
                                     <span>Mage Path</span>
                                     <span>M. Attack 99</span>
                                     <span>Defence 999</span>
@@ -161,11 +160,11 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                             </div>
                         </div>
-                        <div onClick={() => handleClassSelect('rogue')} style="height: 150px;width: 100px;background-color: #513482;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
-                            <div style="height: 100%;width: 100%;background-color: #623f9e;margin: auto;border-radius: inherit;overflow: hidden;">
-                                <div style=" height: 50%; width: 100%; background-color: black">
+                        <div onClick={() => handleClassSelect('rogue')} className={styles.classCardContainer}>
+                            <div className={styles.classCardContentContainer}>
+                                <div className={styles.classCardImageContainer}>
                                 </div>
-                                <div style="padding: 5px;">
+                                <div className={styles.classCardDescription}>
                                     <span>Rogue Path</span>
                                     <span>Attack 99</span>
                                     <span>Defence 80</span>
