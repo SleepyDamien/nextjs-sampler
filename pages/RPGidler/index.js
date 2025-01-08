@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';
 import styles from '@styles/IdleGame.module.css';
+import Image from 'next/image';
 
     const Game = () => {
         const [player, setPlayer] = useState({
