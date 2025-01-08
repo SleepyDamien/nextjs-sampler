@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { FaShieldAlt, FaCoins, FaTrophy, FaStar } from 'react-icons/fa';
 import styles from '@styles/IdleGame.module.css';
-import Image from 'next/image';
 
     const Game = () => {
         const [player, setPlayer] = useState({
@@ -133,18 +132,14 @@ import Image from 'next/image';
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header title="RPG Idle Sample" />
-
+                 {/* Swap these out with a dynamic card builder - ex: pass var to component. This is essentially a placeholder for now. Also move the styles - I hate inline but using the github editor*/}
                 {/* Character Class Selection */}
                 {isChoosingClass ? (
                     <div className={styles.classSelection}>
                         <h2>Choose Your Class</h2>
-                 {/* Swap these out with a dynamic card builder - ex: pass var to component. This is essentially a placeholder for now. Also move the styles - I hate inline but using the github editor*/}
                         <div onClick={() => handleClassSelect('warrior')} style="height: 150px;width: 100px;background-color: #34785f;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #32a87d;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <Image 
-                                        src="https://placehold.co/100x100/EEE/31343C" 
-                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Warrior Path</span>
@@ -157,9 +152,6 @@ import Image from 'next/image';
                         <div onClick={() => handleClassSelect('mage')} style="height: 150px;width: 100px;background-color: #416e96;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #2f5270;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <Image 
-                                        src="https://placehold.co/100x100/EEE/31343C" 
-                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Mage Path</span>
@@ -172,9 +164,6 @@ import Image from 'next/image';
                         <div onClick={() => handleClassSelect('rogue')} style="height: 150px;width: 100px;background-color: #513482;display: inline-grid;margin: 25px;border-radius: 5px;padding: 6px;font-size: .7em;text-align: initial;">
                             <div style="height: 100%;width: 100%;background-color: #623f9e;margin: auto;border-radius: inherit;overflow: hidden;">
                                 <div style=" height: 50%; width: 100%; background-color: black">
-                                    <Image 
-                                        src="https://placehold.co/100x100/EEE/31343C" 
-                                    />
                                 </div>
                                 <div style="padding: 5px;">
                                     <span>Rogue Path</span>
