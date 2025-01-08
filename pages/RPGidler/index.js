@@ -155,7 +155,7 @@ import styles from '@styles/IdleGame.module.css';
                                 </div>
                                 <div className={styles.classCardDescription}>
                                     <span><b>Mage</b></span><br />
-                                    <span>Magic Attack 200</span><br />
+                                    <span>Magic 200</span><br />
                                     <span>Defence 70</span><br />
                                     <span>Speed 80</span><br />
                                     <span>Health 100</span><br />
