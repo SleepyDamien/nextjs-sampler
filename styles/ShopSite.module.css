@@ -164,7 +164,7 @@
 .quickLinkSection {
     width: 100%;
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .quicklookButton {
