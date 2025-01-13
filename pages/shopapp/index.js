@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
 import { useState, useEffect, useRef } from 'react';
-import styles from '@styles/Home.module.css'
+import styles from '@styles/ShopSite.module.css'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
 import { SiQuicklook } from "react-icons/si";
 import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";

@@ -2,34 +2,24 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import Link from 'next/link'
-import shopAppMain from './shopapp'
-import { FaSquareGithub, FaLink } from "react-icons/fa6";
-
+import { FaLink } from "react-icons/fa6";
+import styles from '@styles/HomePage.module.css'
+import About from '@components/homepage/about'
+import Socials from '@components/homepage/socials'
+import MicroSiteSection from '@components/homepage/microsites'
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Head>
-        <title>Damien Rincon | Next.JS sandbox</title>
+        <title>Damien Rincon | Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main id="landingPage">
-        <Header title="Next.JS demos" />
-        <p className="description">
-        Each app is designed with a general concept in mind. Keep in mind these are conceptual and WIP applications I do in my free time. 
-    Feel free to reach out to me via linkedin!
-        </p>
-    <p>
-    <Link href="https://github.com/SleepyDamien"><FaSquareGithub /> View my GitHub!</Link> 
-    </p>
-
-              <div className="miniNav">
-                  Custom mini applications 
-                  <ul>
-                      <li><Link href="shopapp"><FaLink /> Shop App Demo</Link> </li>
-                      <li><Link href="RPGidler"><FaLink /> Idle RPG game Demo</Link> </li>
-                  </ul>
-              </div>
+      <main id="landingPage" className={styles.landingMain}>
+        <Header title="Welcome!" />
+        <About />
+        <Socials />
+        <MicroSiteSection />
       </main>
       <Footer />
     </div>
