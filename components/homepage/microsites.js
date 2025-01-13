@@ -35,7 +35,7 @@ export default function MicroSiteSection() {
             </Link>
                 </li>
                 <li>
-                    <Link href="rpgidler">
+                    <Link href="idlegame">
                         <div className={styles.micrositeTile}>
                             <div className={styles.leftTileSection}>
                                 <div className={styles.tileIconContainer}>
