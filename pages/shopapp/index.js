@@ -78,17 +78,11 @@ export default function ShopAppMain() {
     const handleQuicklook = (item) => {
         setQuicklookItem(item);
         setShowQuicklook(true);
-        //const qlWindow = document.getElementById("quicklookWindow");
-        //qlWindow.classList = qlWindow.classList.remove(styles.slide-left);
-       // qlWindow.classList = qlWindow.classList.add(styles.slide-left);
         window.scrollTo({top: 0, behavior: 'smooth'});
         
     };
 
     const handleQuicklookClose = () => {
-        //const qlWindow = document.getElementById("quicklookWindow");
-        //qlWindow.classList = qlWindow.classList.remove(styles.slide-left);
-        //qlWindow.classList = qlWindow.classList.add(styles.slide-out-left);
         setShowQuicklook(false);
     }
 
@@ -193,27 +187,21 @@ export default function ShopAppMain() {
             {/* Quicklook Modal */}
             {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling} id="quicklookWindow">
-                                        <span className={styles.quicklookClose} onClick={handleQuicklookClose}><IoIosCloseCircle /></span>
-                                        <div className={styles.quicklookImageFrame}>
-                                            <img
-                                                src={quicklookItem.image}
-                                                alt={quicklookItem.name}
-                                                className={styles.productImage}
-                                            />
-                                        </div>
-                                        <div className={styles.productDetails}>
-                                            <div className={styles.productTitle}><strong>{quicklookItem.name}</strong></div>
-                                            <div className={styles.price}>{quicklookItem.price}</div>
-                                            <div>
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarHalfOutline />
-                                               <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
-                                           </div>
-                                                
-                                        </div> 
+                        <span className={styles.quicklookClose} onClick={handleQuicklookClose}><IoIosCloseCircle /></span>
+                        <div className={styles.quicklookImageFrame}>
+                            <img
+                                src={quicklookItem.image}
+                                alt={quicklookItem.name}
+                                className={styles.productImage}
+                            />
+                        </div>
+                        <div className={styles.productDetails}>
+                            <div className={styles.productTitle}><strong>{quicklookItem.name}</strong></div>
+                            <div className={styles.price}>{quicklookItem.price}</div>
+                            <div className={styles.CTAButtonContainer}>
+                                <button className={styles.CTAButton}>Add to cart</button>
+                            </div>                            
+                        </div> 
                     </div>
                 )}
 
@@ -234,16 +222,11 @@ export default function ShopAppMain() {
                                         <strong>{item.name}</strong>
                                         <div className={styles.price}>{item.price}</div>
                                          <div className={styles.quickLinkSection}>
-                                           <div>
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarFullOutline />
-                                               <TiStarHalfOutline />
-                                               <span><strong>({ Math.floor(Math.random() * 5 ) })</strong></span>
-                                           </div>
-                                        <div onClick={() => handleQuicklook(item)}> 
-                                           Quicklook <SiQuicklook />
+                                            <div className={styles.CTAButtonContainer}>
+                                                <button className={styles.CTAButton}>Add to cart</button>
+                                            </div>
+                                            <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
+                                           <SiQuicklook />
                                         </div>
                                       </div>
                                     </div>

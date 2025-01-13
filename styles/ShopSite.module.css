@@ -106,7 +106,7 @@
     width: 45%;
     background-color: #FFFFFF;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 5px -3px rgb(0 0 0 / 69%);
     transition: transform 0.3s ease-in-out;
     margin: 10px;
     background-color: #FFF;
@@ -161,12 +161,38 @@
     margin-top: 5px;
 }
 
-.quickLinkSection{
+.quickLinkSection {
     width: 100%;
     display: inline-flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
+.quicklookButton {
+    width: 30px;
+    height: 30px;
+    background: #000000;
+    border-radius: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    color: white;
+}
+
+.CTAButtonContainer{
+    width: 80%;
+}
+
+.CTAButton {
+    width: 90%;
+    height: 30px;
+    margin: auto;
+    color: white;
+    border-radius: 25px;
+    background: #e14343;
+    border: none;
+}
 /* Pagination Controls */
 .pagination {
     display: flex;
@@ -355,5 +381,18 @@
     .quicklookStyling .productDetails {
         width: 100%;
         padding: 10px;
+    }
+
+    .quicklookButton {
+        width: 30px;
+        height: 30px;
+        background: #000000;
+        border-radius: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        color: white;
     }
 }
