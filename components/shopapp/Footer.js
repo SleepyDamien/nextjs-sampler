@@ -10,15 +10,12 @@ export default function Footer() {
                 <a href="https://github.com/SleepyDamien" className={styles.socialLink} aria-label="LinkedIn">
                     <FaLinkedin />
                 </a>
-                <a href="https://github.com/SleepyDamien" className={styles.socialLink} aria-label="Twitter">
-                    <FaTwitter />
-                </a>
             </div>
 
             <div className={styles.pageLinks}>
                 <a href="https://github.com/SleepyDamien" className={styles.pageLink}>Contact Us</a>
-                <a href="#" className={styles.pageLink}>Privacy Policy</a>
-                <a href="#" className={styles.pageLink}>About Us</a>
+                <a href="https://damien-sandbox.netlify.app/privacy" className={styles.pageLink}>Privacy Policy</a>
+                <a href="https://damien-sandbox.netlify.app/about" className={styles.pageLink}>About Us</a>
             </div>
 
             <div className={styles.footerBottom}>
