@@ -21,6 +21,8 @@ import styles from '@styles/IdleGame.module.css';
         const [isChoosingClass, setIsChoosingClass] = useState(true);
         const logEndRef = useRef(null);
         const playerRef = useRef(player);
+        const fightTimer = 15000 / player.level * 1;
+        const goldTimer = 12000 / player.level * 1;
 
         useEffect(() => {
             playerRef.current = player;
@@ -89,7 +91,6 @@ import styles from '@styles/IdleGame.module.css';
         useEffect(() => {
             if (!player.className || !autoFight) return;
 
-            const fightTimer = 15000 / player.level * 1;
             const intervalFight = setInterval(() => {
                 handleFight();
             }, fightTimer);
@@ -100,7 +101,6 @@ import styles from '@styles/IdleGame.module.css';
         useEffect(() => {
             if (!player.className) return;
 
-            const goldTimer = 12000 / player.level * 1;
             const intervalGold = setInterval(() => {
                 handleIdle();
             }, goldTimer);
