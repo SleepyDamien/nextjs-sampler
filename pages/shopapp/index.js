@@ -4,7 +4,7 @@ import Footer from '@components/shopapp/Footer'
 import { useState, useEffect, useRef } from 'react';
 import styles from '@styles/ShopSite.module.css'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
-import { SiQuicklook } from "react-icons/si";
+import { VscOpenPreview } from "react-icons/vsc";
 import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
 
 
@@ -226,7 +226,7 @@ export default function ShopAppMain() {
                                                 <button className={styles.CTAButton}>Add to cart</button>
                                             </div>
                                             <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
-                                           <SiQuicklook />
+                                           <VscOpenPreview />
                                         </div>
                                       </div>
                                     </div>
@@ -248,7 +248,7 @@ export default function ShopAppMain() {
                     >
                         <IoMdArrowRoundBack />
                     </button>
-                    <span>Page {currentPage} of {totalPages}</span>
+                    <span>{currentPage} of {totalPages}</span>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
