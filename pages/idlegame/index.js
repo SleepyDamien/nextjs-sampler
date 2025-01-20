@@ -54,18 +54,14 @@ import styles from '@styles/IdleGame.module.css';
             if (!player.className) return;
             try {
                 const response = await axios.post('/api/gameApi/fight', { player: playerRef.current });
-                const { exp, gold, level } = response.data;
-
+                const { exp, gold, level } = response.data;        
                 updatePlayer({ exp, gold, level });
-
-                if (player.level < level) {
-                    setGameLog((prevLog) => [...prevLog, `You leveled up!`]);
-                }
-
+                
                 setGameLog((prevLog) => [
                     ...prevLog,
                     `You fight off some bandits and now have ${exp} EXP and ${gold} gold.`,
                 ]);
+                
             } catch (error) {
                 console.error('Error during fight:', error);
                 setGameLog((prevLog) => [...prevLog, 'An error occurred during the fight.']);
@@ -100,7 +96,7 @@ import styles from '@styles/IdleGame.module.css';
 
             return () => clearInterval(intervalFight);
         }, [autoFight, player.className]);
-
+        
         useEffect(() => {
             if (!player.className) return;
 
