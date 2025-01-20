@@ -6,7 +6,7 @@ import styles from '@styles/ShopSite.module.css'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
 import { VscOpenPreview } from "react-icons/vsc";
 import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
-
+import { FaStar, FaHeart } from "react-icons/fa6";
 
 
 export default function ShopAppMain() {
@@ -80,6 +80,16 @@ export default function ShopAppMain() {
         setShowQuicklook(true);
         window.scrollTo({top: 0, behavior: 'smooth'});
         
+    };
+    
+    // Handle add to favorites 
+    const handleFavoriteItem = (item) => {
+        alert("coming soon.");
+    };
+    
+    // Handle check reviews
+    const handleReviews = (item) => {
+        alert("coming soon.");
     };
 
     const handleQuicklookClose = () => {
@@ -225,12 +235,20 @@ export default function ShopAppMain() {
                                             <div className={styles.CTAButtonContainer}>
                                                 <button className={styles.CTAButton}>Add to cart</button>
                                             </div>
-                                            <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
-                                           <VscOpenPreview />
                                         </div>
-                                      </div>
-                                    </div>
-                                </div>
+                                            <div className={styles.sideButtonsContainer}>
+                                                <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
+                                                   <VscOpenPreview />
+												</div>
+                                                <div className={styles.favoriteButton} onClick={() => handleFavoriteItem(item)}> 
+                                                   <FaHeart />
+												</div>
+                                                <div className={styles.ReviewsIcon} onClick={() => handleReviews(item)}> 
+                                                   <FaStar  />
+												</div>
+											</div>
+									</div>
+								</div>
                             </li>
                         ))
                     ) : (
