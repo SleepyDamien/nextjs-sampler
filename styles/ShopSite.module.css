@@ -216,7 +216,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin: 2px;
+    margin: 7px;
     flex-direction: column;
 }
 
