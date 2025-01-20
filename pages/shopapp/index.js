@@ -246,6 +246,7 @@ export default function ShopAppMain() {
 						</div>
                                                 <div className={styles.ReviewsIcon} onClick={() => handleReviews(item)}> 
                                                    <FaStar  />
+							<span className={styles.reviewText}>4.5</span> 
 						</div>
 				       </div>
 				</div>
