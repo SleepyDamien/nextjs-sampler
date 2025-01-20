@@ -236,19 +236,19 @@ export default function ShopAppMain() {
                                                 <button className={styles.CTAButton}>Add to cart</button>
                                             </div>
                                         </div>
-                                            <div className={styles.sideButtonsContainer}>
+				     </div>
+				       <div className={styles.sideButtonsContainer}>
                                                 <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
                                                    <VscOpenPreview />
-												</div>
+						</div>
                                                 <div className={styles.favoriteButton} onClick={() => handleFavoriteItem(item)}> 
                                                    <FaHeart />
-												</div>
+						</div>
                                                 <div className={styles.ReviewsIcon} onClick={() => handleReviews(item)}> 
                                                    <FaStar  />
-												</div>
-											</div>
-									</div>
-								</div>
+						</div>
+				       </div>
+				</div>
                             </li>
                         ))
                     ) : (
