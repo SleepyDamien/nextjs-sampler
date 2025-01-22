@@ -107,7 +107,7 @@
     width: 45%;
     background-color: #FFFFFF;
     border-radius: 12px;
-    box-shadow: 0 0 5px -3px rgb(0 0 0 / 69%);
+    box-shadow: 0 3px 8px -4px rgba(0, 0, 0, .69);
     transition: transform 0.3s ease-in-out;
     margin: 10px;
     background-color: #FFF;
@@ -298,7 +298,7 @@
     width: 50%;
     background: white;
     height: 300px;
-    border-radius: 25px;
+    border-radius: 12px;
     display: inline-table;
     padding: 10px;
     overflow: hidden;
@@ -449,7 +449,7 @@
 @media (max-width: 480px) {
    /* Quicklook or preview styling */
    .quicklookStyling {
-        width: 100%;
+        width: 06%%;
     }
 	/* Side Button Styling */
 .quicklookButton {
