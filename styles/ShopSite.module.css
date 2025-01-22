@@ -173,8 +173,8 @@
 }
 
 .quicklookButton {
-	width: 30px;
-        height: 30px;
+	width: 33px;
+        height: 33px;
         background: none;
         border-radius: 10px;
         display: flex;
@@ -187,8 +187,8 @@
     	box-shadow: 0px 2px 10px -5px black;
 }
 .favoriteButton{
-	width: 30px;
-        height: 30px;
+	width: 33px;
+        height: 33px;
         background: none;
         border-radius: 10px;
         display: flex;
@@ -202,8 +202,8 @@
 }
 
 .ReviewsIcon { 
-	width: 30px;
-        height: 30px;
+	width: 33px;
+        height: 33px;
         background: none;
         border-radius: 10px;
         display: flex;
@@ -230,10 +230,10 @@
 
 .CTAButton {
     width: 90%;
-    height: 30px;
+    height: 33px;
     margin: auto;
     color: white;
-    border-radius: 25px;
+    border-radius: 7px;
     background: #e14343;
     border: none;
 }
