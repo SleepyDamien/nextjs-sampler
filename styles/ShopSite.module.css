@@ -442,6 +442,10 @@
 
 /* Phone Portrait width */
 @media (max-width: 480px) {
+   /* Quicklook or preview styling */
+   .quicklookStyling {
+        width: 100%;
+    }
 	/* Side Button Styling */
 	.quicklookButton {
 	width: 33px;
