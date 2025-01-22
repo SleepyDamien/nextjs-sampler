@@ -23,6 +23,14 @@ export default function ShopAppMain() {
 
     const inputRef = useRef(null); // Reference to the input element
 
+    // tiny todo:
+    /*
+    - move the side buttons to dynamic component
+    - move cards to be a dynamic component/template
+    	ex: <component data={item} />
+    - move quick look/preview
+    - better accessibility changes
+    */
     // Fetch products from API
     useEffect(() => {
         const fetchProducts = async () => {
@@ -84,12 +92,12 @@ export default function ShopAppMain() {
     
     // Handle add to favorites 
     const handleFavoriteItem = (item) => {
-        alert("coming soon.");
+        console.log("This will open a tiny modal of top 5 reviews.")
     };
     
     // Handle check reviews
     const handleReviews = (item) => {
-        alert("coming soon.");
+        console.log("This will open a tiny modal of top 5 reviews.")
     };
 
     const handleQuicklookClose = () => {
@@ -108,7 +116,6 @@ export default function ShopAppMain() {
         const option = event.target.value;
         setSortOption(option);
         setShowQuicklook(false);
-
     };
 
     // Sort filtered items based on selected sort option
@@ -238,15 +245,15 @@ export default function ShopAppMain() {
                                         </div>
 				     </div>
 				       <div className={styles.sideButtonsContainer}>
+						<div className={styles.favoriteButton} onClick={() => handleFavoriteItem(item)}> 
+                                                   <FaHeart />
+						</div>
                                                 <div className={styles.quicklookButton} onClick={() => handleQuicklook(item)}> 
                                                    <VscOpenPreview />
 						</div>
-                                                <div className={styles.favoriteButton} onClick={() => handleFavoriteItem(item)}> 
-                                                   <FaHeart />
-						</div>
                                                 <div className={styles.ReviewsIcon} onClick={() => handleReviews(item)}> 
                                                    <FaStar  />
-							<span className={styles.reviewText}>4.5</span> 
+						   <span className={styles.reviewText}>4.5</span> 
 						</div>
 				       </div>
 				</div>
