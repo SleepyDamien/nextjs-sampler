@@ -183,7 +183,8 @@
         flex-wrap: nowrap;
         flex-direction: column;
         color: black;
-        border: 2px solid black;
+    	background: white;
+    	box-shadow: 0px 2px 10px -5px black;
 }
 .favoriteButton{
 	width: 30px;
@@ -196,7 +197,8 @@
         flex-wrap: nowrap;
         flex-direction: column;
         color: black;
-        border: 2px solid black;
+    	background: white;
+    	box-shadow: 0px 2px 10px -5px black;
 }
 
 .ReviewsIcon { 
@@ -210,7 +212,8 @@
         flex-wrap: nowrap;
         flex-direction: column;
         color: black;
-        border: 2px solid black;
+   	background: white;
+    	box-shadow: 0px 2px 10px -5px black;
 }
 
 .sideButtonsContainer {
