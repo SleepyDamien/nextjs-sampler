@@ -430,6 +430,18 @@
         width: 100%;
         padding: 10px;
     }
+
+.sideButtonsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 7px;
+    flex-direction: column;
+}
+}
+
+/* Phone Portrait width */
+@media (max-width: 480px) {
 	/* Side Button Styling */
 	.quicklookButton {
 	width: 33px;
@@ -473,13 +485,5 @@
         color: black;
    	background: white;
     	box-shadow: 0px 2px 10px -5px black;
-}
-
-.sideButtonsContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin: 7px;
-    flex-direction: column;
 }
 }
