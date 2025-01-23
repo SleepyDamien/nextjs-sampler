@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import styles from './Header.module.css';
 import { GiWyvern } from "react-icons/gi";
+import { FiShoppingCart } from "react-icons/fi";
+import styles from '@styles/shopmodules/Header.module.css';
+import Cart from '@components/shopapp/cart/Cart'; // Import the Cart component
 
 
-export default function Header() {
+export default function Header({ cartItems, onRemoveFromCart, onClearCart }) {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false); // For mobile menu
+    const [showCart, setShowCart] = useState(false); // State for showing the cart
 
     // Toggle dropdown menu visibility
     const toggleDropdown = () => {
@@ -18,42 +21,39 @@ export default function Header() {
     };
 
     return (
-        <header className={styles.header}>
+       <header className={styles.header}>
             <div className={styles.navbar}>
                 {/* Logo in the center */}
                 <div className={styles.logo}>
-                    <a href="#"><GiWyvern /> TechDragon</a>
+                    <a href="/shopapp"><GiWyvern /> TechDragon</a>
                 </div>
 
-                {/* Right section with dropdown */}
+                {/* Right section with dropdown and cart */}
                 <div className={styles.rightSection}>
-                    {/* Dropdown for desktop */}
-                    <div className={`${styles.dropdown} ${isDropdownOpen ? styles.open : ''}`}>
-                        <button onClick={toggleDropdown} className={styles.dropdownButton}>
-                            Menu
-                        </button>
-                        <div className={styles.dropdownContent}>
-                            <a href="#" className={styles.dropdownLink}>Link 1</a>
-                            <a href="#" className={styles.dropdownLink}>Link 2</a>
-                            <a href="#" className={styles.dropdownLink}>Link 3</a>
-                        </div>
-                    </div>
-
-                    {/* Hamburger Menu for mobile */}
-                    <div className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} onClick={toggleMobileMenu}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    {/* Cart Toggle Button */}
+                    <button 
+                        className={styles.cartButton} 
+                        onClick={() => setShowCart(!showCart)}
+                    >
+                        {showCart ? <FiShoppingCart />
+                                  : (<><FiShoppingCart/>
+                                        {cartItems.length == 0 
+                                            ? '' 
+                                            : <span className={styles.cartItemCount}>{cartItems.length}</span>
+                                        }
+                                     </>)}
+                    </button>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}>
-                <a href="#" className={styles.mobileMenuLink}>Link 1</a>
-                <a href="#" className={styles.mobileMenuLink}>Link 2</a>
-                <a href="#" className={styles.mobileMenuLink}>Link 3</a>
-            </div>
+            {/* Cart Component */}
+            {showCart && (
+                <Cart 
+                    cartItems={cartItems} 
+                    onRemoveFromCart={onRemoveFromCart} 
+                    onClearCart={onClearCart} 
+                />
+            )}
         </header>
     );
 }

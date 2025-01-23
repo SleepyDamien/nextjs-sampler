@@ -96,6 +96,34 @@
         border-bottom: none;
     }
 
+/* Cart button */
+.cartButton {
+    width: 50px;
+    height: 50px;
+    background-color: #973a3a;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    color: white;
+    box-shadow: 0px 5px 7px -6px #000;
+    scale: 95%;
+    font-size: x-large;
+    border: none;
+}
+
+    .cartButton:hover {
+        background-color: #973a3a;
+    }
+
+.cartItemCount {
+    font-size: small;
+    position: relative;
+    padding: 3px;
+}
+
 /* Hamburger Menu for Mobile */
 .hamburger {
     display: none;

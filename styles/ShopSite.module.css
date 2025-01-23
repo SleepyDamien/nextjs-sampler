@@ -174,51 +174,26 @@
 }
 
 /* Side Buttons for prev/fav/rate */
+.favoriteButton,
+.ReviewsIcon,
 .quicklookButton {
-	width: 50px;
-        height: 50px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-    	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 95%;
-}
-.favoriteButton{
-	width: 50px;
-        height: 50px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-    	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 95%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    color: black;
+    background: white;
+    box-shadow: 0 4px 5px -6px #000;
+    scale: 95%;
+    cursor: pointer;
 }
 
-.ReviewsIcon { 
-	width: 50px;
-        height: 50px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-   	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 95%;
+.redColorText {
+    color: #973a3a;
 }
 
 .sideButtonsContainer {
@@ -241,7 +216,12 @@
     border-radius: 7px;
     background: #e14343;
     border: none;
+    cursor: pointer;
 }
+    .CTAButton:hover {
+        background-color: #c0392b;
+        color: white;
+    }
 /* Pagination Controls */
 .pagination {
     display: flex;
@@ -453,49 +433,46 @@
     }
 	/* Side Button Styling */
 .quicklookButton {
-	width: 33px;
-        height: 33px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-    	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 100%;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    color: black;
+    background: white;
+    box-shadow: 0 4px 5px -6px #000;
+    scale: 100%;
 }
 .favoriteButton{
-	width: 33px;
-        height: 33px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-    	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 100%;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    color: black;
+    background: white;
+    box-shadow: 0 4px 5px -6px #000;
+    scale: 100%;
 }
 
 .ReviewsIcon { 
-	width: 33px;
-        height: 33px;
-        background: none;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        color: black;
-   	background: white;
-    	box-shadow: 0 4px 5px -6px #000;
-	scale: 100%;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    color: black;
+    background: white;
+    box-shadow: 0 4px 5px -6px #000;
+    scale: 100%;
 }
 }

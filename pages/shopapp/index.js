@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Header from '@components/shopapp/Header'
 import Footer from '@components/shopapp/Footer'
-import { useState, useEffect, useRef } from 'react';
+import Cart from '@components/shopapp/cart/Cart';
 import styles from '@styles/ShopSite.module.css'
+
+import { useState, useEffect, useRef } from 'react';
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
 import { CgCloseR } from "react-icons/cg";
 import { VscOpenPreview } from "react-icons/vsc";
@@ -10,19 +12,26 @@ import { TiStarFullOutline, TiStarHalfOutline } from "react-icons/ti";
 import { FaStar, FaHeart } from "react-icons/fa6";
 
 
+
 export default function ShopAppMain() {
+    /* isloading state */ 
+    const [loading, setLoading] = useState(true);
+    /* Search */
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredItems, setFilteredItems] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [allItems, setAllItems] = useState([]); // Store all items to reset filteredItems when needed
+    const inputRef = useRef(null); // Reference to the input element
+    /* Quick view product*/
     const [showQuicklook, setShowQuicklook] = useState(false);
     const [quicklookItem, setQuicklookItem] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [allItems, setAllItems] = useState([]); // Store all items to reset filteredItems when needed
-    const [sortOption, setSortOption] = useState('name'); // State for sorting
+    /* Pagination and sort */
     const itemsPerPage = 5;
-
-    const inputRef = useRef(null); // Reference to the input element
+    const [currentPage, setCurrentPage] = useState(1);
+    const [sortOption, setSortOption] = useState('name'); // State for sorting
+    /* Cart */
+    const [cartItems, setCartItems] = useState([]); // Simulate a cart
+    const [showCart, setShowCart] = useState(false);
 
     // tiny todo:
     /*
@@ -32,6 +41,7 @@ export default function ShopAppMain() {
     - move quick look/preview
     - better accessibility changes
     */
+
     // Fetch products from API
     useEffect(() => {
         const fetchProducts = async () => {
@@ -90,7 +100,11 @@ export default function ShopAppMain() {
         window.scrollTo({top: 0, behavior: 'smooth'});
         
     };
-    
+
+   const handleQuicklookClose = () => {
+        setShowQuicklook(false);
+    }
+
     // Handle add to favorites 
     const handleFavoriteItem = (item) => {
         console.log("This will open a tiny modal of top 5 reviews.")
@@ -101,9 +115,42 @@ export default function ShopAppMain() {
         console.log("This will open a tiny modal of top 5 reviews.")
     };
 
-    const handleQuicklookClose = () => {
-        setShowQuicklook(false);
-    }
+   // Cart functionality
+    const handleAddToCart = (item, quantity = 1) => {
+        setCartItems((prevItems) => {
+            const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
+            if (existingItem) {
+                // Update the quantity if the item exists
+                return prevItems.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quantity: cartItem.quantity + quantity }
+                        : cartItem
+                );
+            } else {
+                // Add the new item to the cart with the specified quantity
+                return [...prevItems, { ...item, quantity }];
+            }
+        });
+    };
+
+    // Remove an item from the cart
+    // 0 = fully removed
+    const handleRemoveFromCart = (itemId) => {
+        setCartItems((prevItems) =>
+            prevItems
+                .map((item) =>
+                    item.id === itemId
+                        ? { ...item, quantity: item.quantity - 1 } // Decrement quantity
+                        : item
+                )
+                .filter((item) => item.quantity > 0) // Remove items with zero quantity
+        );
+    };
+
+    //clear the cart
+    const handleClearCart = () => {
+        setCartItems([]);
+    };
 
     // Close suggestions when the input field loses focus
     const handleBlur = () => {
@@ -160,7 +207,11 @@ export default function ShopAppMain() {
                 <title> TechDragon | Search Products</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header title="Find your product" />
+            <Header 
+                cartItems={cartItems} 
+                onRemoveFromCart={handleRemoveFromCart} 
+                onClearCart={handleClearCart} 
+            />
             <div className={styles.searchBarContainer}>
                 <input
                     ref={inputRef}
@@ -201,7 +252,6 @@ export default function ShopAppMain() {
                     <option value="price">Price: Low to High</option>
                 </select>
             </div>
-
             {/* Quicklook Modal */}
             {showQuicklook && quicklookItem && (
                     <div className={styles.quicklookStyling} id="quicklookWindow">
@@ -217,12 +267,17 @@ export default function ShopAppMain() {
                             <div className={styles.productTitle}><strong>{quicklookItem.name}</strong></div>
                             <div className={styles.price}>{quicklookItem.price}</div>
                             <div className={styles.CTAButtonContainer}>
-                                <button className={styles.CTAButton}>Add to cart</button>
+                                <button
+                                    className={styles.CTAButton}
+                                    onClick={() => handleAddToCart(item, 1)}
+                                >
+                                    Add to cart
+                                </button>
                             </div>                            
                         </div> 
                     </div>
                 )}
-
+            {/* List of Products */}
             <div className={styles.productList}>
                 <ul>
                     {paginatedItems.length > 0 ? (
@@ -241,7 +296,12 @@ export default function ShopAppMain() {
                                         <div className={styles.price}>{item.price}</div>
                                          <div className={styles.quickLinkSection}>
                                             <div className={styles.CTAButtonContainer}>
-                                                <button className={styles.CTAButton}>Add to cart</button>
+                                                <button
+                                                    className={styles.CTAButton}
+                                                    onClick={() => handleAddToCart(item, 1)}
+                                                >
+                                                    Add to cart
+                                                </button>
                                             </div>
                                         </div>
 				     </div>
@@ -265,7 +325,6 @@ export default function ShopAppMain() {
                     )}
                 </ul>
             </div>
-
             {/* Pagination controls */}
             {filteredItems.length > itemsPerPage && (
                 <div className={styles.pagination}>

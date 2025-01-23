@@ -1,4 +1,4 @@
-import styles from './Footer.module.css';
+import styles from '@styles/shopmodules/Footer.module.css';
 import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 export default function Footer() {
     return (
