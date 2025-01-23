@@ -222,6 +222,7 @@
         background-color: #c0392b;
         color: white;
     }
+
 /* Pagination Controls */
 .pagination {
     display: flex;
@@ -429,50 +430,23 @@
 @media (max-width: 480px) {
    /* Quicklook or preview styling */
    .quicklookStyling {
-        width: 06%%;
+        width: 100%;
     }
 	/* Side Button Styling */
-.quicklookButton {
-    width: 33px;
-    height: 33px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    color: black;
-    background: white;
-    box-shadow: 0 4px 5px -6px #000;
-    scale: 100%;
-}
-.favoriteButton{
-    width: 33px;
-    height: 33px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    color: black;
-    background: white;
-    box-shadow: 0 4px 5px -6px #000;
-    scale: 100%;
-}
-
-.ReviewsIcon { 
-    width: 33px;
-    height: 33px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    color: black;
-    background: white;
-    box-shadow: 0 4px 5px -6px #000;
-    scale: 100%;
-}
+    .favoriteButton,
+    .ReviewsIcon,
+    .quicklookButton {
+        width: 33px;
+        height: 33px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        color: black;
+        background: white;
+        box-shadow: 0 4px 5px -6px #000;
+        scale: 100%;
+    }
 }
