@@ -1,4 +1,4 @@
-https://damien-sandbox.netlify.app/
+https://1024kb.dev/
 
 Various sampler apps to showcase my abilities.
 
