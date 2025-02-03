@@ -3,7 +3,9 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    height: 100vh;
+    overflow: scroll;
+    background-image: url('/54034066.jpeg');
 }
 
 .gameButton {
@@ -29,6 +31,51 @@
         background-color: #d10101;
     }
 
+/* Boxes for stats */
+.infoBoxes {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.infoBox {
+    width: 150px;
+    height: 150px;
+    background: #445dca;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px -7px #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    position: relative;
+}
+
+.timerProgress {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.timerBar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff5c5c, #ffdd57);
+    width: 100%;
+    transition: width 1s linear;
+    border-radius: 5px;
+}
+
 .gameLogArea {
     width: 80%;
     height: 300px;
@@ -48,6 +95,12 @@
     border-bottom: 1px solid black;
 }
 
+.classSelection {
+    background: rgb(0 0 0 / 54%);
+    box-shadow: 0 0 15px -3px black;
+    margin: auto;
+    border-radius: 12px;
+}
 /* Generic Card classes for class picker */
 .classCardContainer {
     height: 200px;
@@ -103,12 +156,26 @@
 
 /* Profile Panel */
 .profilePanel {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #9103086b;
+    width: 100%;
+    /* margin: 20px auto; */
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px -4px 16px -7px rgb(0 0 0 / 54%);
+    background: #445dca;
+    position: fixed;
+    bottom: 0;
+    z-index: 10000;
+}
+
+.profileClassAndLevel {
+    width: 50%;
+    background: #445dca;
+    border-radius: 12px;
+    height: 50px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .profileHeader {
@@ -118,8 +185,7 @@
 
 .profileStats {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    flex-direction: row;
 }
 
 .statItem {
@@ -198,10 +264,15 @@
 @media (max-width: 800px) {
 
     .profileStats {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
+        position: absolute;
+        width: 100%;
+        bottom: 80%;
+        left: 0;
+        right: 0;
+    }
+
+    .controlArea {
+        margin: 30% 0;
     }
 
     .gameLogArea {
@@ -209,7 +280,31 @@
     }
 
     .gameContainer {
+        justify-content: space-between;
+    }
 
+    .profileClassAndLevel {
+        box-shadow: 0px -4px 10px -7px rgb(0 0 0 / 54%);
+    }
+
+    .infoBoxes {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        position: fixed;
+        bottom: 30%;
+        right: 0px;
+    }
+
+    .infoBox {
+        border-radius: 12px 0px 0px 12px;
+        height: auto;
     }
 
 }
