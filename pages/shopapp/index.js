@@ -269,7 +269,7 @@ export default function ShopAppMain() {
                             <div className={styles.CTAButtonContainer}>
                                 <button
                                     className={styles.CTAButton}
-                                    onClick={() => handleAddToCart(item, 1)}
+                                onClick={() => handleAddToCart(quicklookItem, 1)}
                                 >
                                     Add to cart
                                 </button>
