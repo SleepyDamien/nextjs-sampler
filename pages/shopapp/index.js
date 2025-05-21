@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import Header from '@components/shopapp/Header'
-import Footer from '@components/shopapp/Footer'
+import Head from 'next/head';
+import Header from '@components/shopapp/Header';
+import Footer from '@components/shopapp/Footer';
 import Cart from '@components/shopapp/cart/Cart';
-import styles from '@styles/ShopSite.module.css'
+import styles from '@styles/ShopSite.module.css';
 
 import { useState, useEffect, useRef } from 'react';
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosCloseCircle } from "react-icons/io";
